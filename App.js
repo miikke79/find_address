@@ -7,8 +7,8 @@ import React, { useState } from 'react';
 export default function App() {
 
   const [address, setAddress] = useState('');
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
+  const [latitude, setLatitude] = useState(57.44741);
+  const [longitude, setLongitude] = useState(-3.13258);
 
   const fetchLocation = () => 
   {  fetch(`http://www.mapquestapi.com/geocoding/v1/address?key=K6UsLI0CHckInWVQwxQaQrdANObKx3hL&location=${address}`)  
@@ -23,8 +23,8 @@ export default function App() {
       <MapView
         style={styles.map}   
         region={{
-          latitude: {latitude},
-          longitude: {longitude},
+          latitude: latitude,
+          longitude: longitude,
           latitudeDelta: 0.0322,
           longitudeDelta: 0.0221,
         }}
