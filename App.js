@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View, Button, Alert} from 'react-native';
+import { StyleSheet, TextInput, View, Button, Alert} from 'react-native';
 import MapView, { Marker } from'react-native-maps';
 import React, { useState } from 'react';
 
@@ -13,7 +13,7 @@ export default function App() {
   const fetchLocation = () => 
   {  fetch(`http://www.mapquestapi.com/geocoding/v1/address?key=K6UsLI0CHckInWVQwxQaQrdANObKx3hL&location=${address}`)  
   .then(response => response.json())  
-  .then(data => {setLatitude(data.results[0].locations[0].latLng.lat), setLongitude(data.results[0].locations[0].latLng.lng)  })
+  .then(data => {setLatitude(data.results[0].locations[0].latLng.lat), setLongitude(data.results[0].locations[0].latLng.lng) })
   .catch(error => {         Alert.alert('Error', error);   });
 } 
 
@@ -27,8 +27,13 @@ export default function App() {
           longitude: longitude,
           latitudeDelta: 0.0322,
           longitudeDelta: 0.0221,
-        }}
-      />
+        }}>
+        <Marker
+        coordinate={{
+          latitude:latitude, 
+          longitude:longitude}}
+          />
+        </MapView>
       <TextInput
       style={{fontSize: 18}}
         placeholder='enter address'
